@@ -1,0 +1,30 @@
+enum Role {
+  CUSTOMER
+  TECHNICIAN
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+}
+
+enum BookingStatus {
+  REQUESTED
+  ACCEPTED
+  DECLINED
+  PAID
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentProvider {
+  STRIPE
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
