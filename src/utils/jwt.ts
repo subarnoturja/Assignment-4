@@ -1,6 +1,6 @@
 import jwt, { JwtPayload, SignOptions } from "jsonwebtoken";
 
-const createToken = (payload : JwtPayload, secret : string, expiresIn : SignOptions ) => {
+export const createToken = (payload : JwtPayload, secret : string, expiresIn : SignOptions ) => {
     const token = jwt.sign(
         payload, 
         secret, 
@@ -12,7 +12,7 @@ const createToken = (payload : JwtPayload, secret : string, expiresIn : SignOpti
     return token;
 }
 
-const verifyToken = (token : string, secret : string) => {
+export const verifyToken = (token : string, secret : string) => {
    try {
         const verifiedToken = jwt.verify(token, secret);
         return {
@@ -27,7 +27,6 @@ const verifyToken = (token : string, secret : string) => {
         }
    }
 }
-
 
 export const jwtUtils = {
     createToken,
