@@ -1,7 +1,6 @@
 import { BookingStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
-
 const createReview = async (
   customerId: string,
   payload: { bookingId: string; rating: number; comment?: string }
