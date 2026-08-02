@@ -5,4 +5,4 @@ const router = Router();
 
 router.get('/', ServiceController.getAllServices);
 
-export const ServiceRoutes = router;
+export const serviceRoutes = router;
