@@ -1,23 +1,23 @@
+
 import Stripe from 'stripe';
 import { prisma } from '../../lib/prisma';
-import { PaymentStatus, Role } from '../../../generated/prisma/enums';
+import { BookingStatus, PaymentProvider, PaymentStatus, Role } from '../../../generated/prisma/enums';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2023-10-16' as any,
 });
 
-// 1. Create Payment Intent/Session
-const createPaymentIntent = async (customerId: string, bookingId: string) => {
+// 1. Create Stripe Checkout Session
+const createCheckoutSession = async (customerId: string, bookingId: string) => {
   if (!bookingId) {
     throw new Error('bookingId is required!');
   }
 
-  // Retrieve booking along with service details
   const booking = await prisma.booking.findUnique({
     where: { id: bookingId },
     include: {
-      payment: true,
       service: true,
+      payment: true,
     },
   });
 
@@ -29,141 +29,148 @@ const createPaymentIntent = async (customerId: string, bookingId: string) => {
     throw new Error('Unauthorized action on this booking!');
   }
 
-  // Booking must be accepted by technician before payment
   if (booking.status !== BookingStatus.ACCEPTED) {
-    throw new Error('Payment can only be processed for ACCEPTED bookings!');
+    throw new Error('Payment can only be made for ACCEPTED bookings!');
   }
 
-  // Return existing intent if already initiated and unpaid
-  if (booking.payment && booking.payment.status === PaymentStatus.PAID) {
-    throw new Error('This booking has already been paid for!');
+  if (booking.payment && booking.payment.status === PaymentStatus.COMPLETED) {
+    throw new Error('This booking is already paid!');
   }
 
-  const amountInCents = Math.round(booking.totalAmount * 100);
+  // Create Stripe Checkout Session
+  const customerEmail = await reqUserEmail(customerId);
 
-  // Create Stripe PaymentIntent
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: amountInCents,
-    currency: 'usd',
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    mode: 'payment',
+    customer_email: customerEmail || undefined, // optional: add customer email
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: booking.service.title,
+            description: `Booking for service ID: ${booking.serviceId}`,
+          },
+          unit_amount: Math.round(booking.totalAmount * 100), // cents
+        },
+        quantity: 1,
+      },
+    ],
     metadata: {
       bookingId: booking.id,
       customerId: customerId,
     },
+    success_url: `${process.env.CLIENT_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.CLIENT_URL}/payment/cancel`,
   });
 
-  // Save or update payment record in DB
+  // Upsert initial PENDING payment record linked to the Stripe Session ID
   const paymentRecord = await prisma.payment.upsert({
-    where: { bookingId: booking.id },
-    update: {
-      transactionId: paymentIntent.id,
-      status: PaymentStatus.PENDING,
-      amount: booking.totalAmount,
-    },
-    create: {
-      bookingId: booking.id,
-      transactionId: paymentIntent.id,
-      amount: booking.totalAmount,
-      status: PaymentStatus.PENDING,
-    },
-  });
+  where: { bookingId: booking.id },
+  update: {
+    transactionId: session.id,
+    status: PaymentStatus.PENDING,
+    amount: booking.totalAmount,
+  },
+  create: {
+    booking: { connect: { id: booking.id } }, // Connect relation directly if scalar fails
+    transactionId: session.id,
+    amount: booking.totalAmount,
+    provider: PaymentProvider.STRIPE,
+    status: PaymentStatus.PENDING,
+  },
+});
 
   return {
-    clientSecret: paymentIntent.client_secret,
+    checkoutUrl: session.url,
+    sessionId: session.id,
     payment: paymentRecord,
   };
 };
 
-// 2. Confirm / Verify Payment Callback (Webhook or Manual Trigger)
-const confirmPayment = async (payload: { transactionId: string; status?: string }) => {
-  const { transactionId } = payload;
-
-  if (!transactionId) {
-    throw new Error('transactionId is required!');
-  }
-
-  const paymentRecord = await prisma.payment.findUnique({
-    where: { transactionId },
-    include: { booking: true },
-  });
-
-  if (!paymentRecord) {
-    throw new Error('Payment transaction record not found!');
-  }
-
-  // Retrieve latest status directly from Stripe
-  const paymentIntent = await stripe.paymentIntents.retrieve(transactionId);
-
-  let updatedStatus: PaymentStatus = PaymentStatus.PENDING;
-
-  if (paymentIntent.status === 'succeeded') {
-    updatedStatus = PaymentStatus.PAID;
-  } else if (paymentIntent.status === 'canceled') {
-    updatedStatus = PaymentStatus.FAILED;
-  }
-
-  // Atomic update for Payment status
-  const updatedPayment = await prisma.payment.update({
-    where: { transactionId },
-    data: {
-      status: updatedStatus,
-    },
-    include: {
-      booking: true,
-    },
-  });
-
-  return updatedPayment;
+// Helper to grab customer email if needed
+const reqUserEmail = async (userId: string) => {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  return user?.email;
 };
 
-// 3. Get User's Payment History
+// 2. Stripe Webhook Event Handler
+const handleStripeWebhook = async (rawBody: Buffer, signature: string) => {
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+
+  let event: Stripe.Event;
+
+  try {
+    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+  } catch (err: any) {
+    throw new Error(`Webhook Signature Verification Failed: ${err.message}`);
+  }
+
+  // Process checkout session completion
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object as Stripe.Checkout.Session;
+    const bookingId = session.metadata?.bookingId;
+
+    if (bookingId) {
+      await prisma.$transaction([
+        // Update payment to PAID
+        prisma.payment.update({
+          where: { bookingId },
+          data: {
+            status: PaymentStatus.COMPLETED,
+            transactionId: session.payment_intent as string || session.id,
+          },
+        }),
+      ]);
+    }
+  }
+
+  // Handle failed/expired payment attempts
+  if (event.type === 'checkout.session.expired' || event.type === 'payment_intent.payment_failed') {
+    const session = event.data.object as Stripe.Checkout.Session;
+    const bookingId = session.metadata?.bookingId;
+
+    if (bookingId) {
+      await prisma.payment.updateMany({
+        where: { bookingId },
+        data: { status: PaymentStatus.FAILED },
+      });
+    }
+  }
+
+  return true;
+};
+
+// 3. Get User Payments History
 const getUserPayments = async (userId: string, role: Role) => {
   let whereCondition: any = {};
 
   if (role === Role.CUSTOMER) {
-    whereCondition = {
-      booking: { customerId: userId },
-    };
+    whereCondition = { booking: { customerId: userId } };
   } else if (role === Role.TECHNICIAN) {
     const techProfile = await prisma.technicianProfile.findUnique({
       where: { userId },
     });
-
-    if (!techProfile) {
-      throw new Error('Technician profile not found!');
-    }
-
-    whereCondition = {
-      booking: { technicianProfileId: techProfile.id },
-    };
+    if (!techProfile) throw new Error('Technician profile not found!');
+    whereCondition = { booking: { technicianProfileId: techProfile.id } };
   }
-  // Admin role retrieves all payments without restrictions
 
-  const payments = await prisma.payment.findMany({
+  return await prisma.payment.findMany({
     where: whereCondition,
     include: {
       booking: {
         include: {
           service: true,
-          customer: {
-            select: { id: true, name: true, email: true },
-          },
-          technicianProfile: {
-            include: {
-              user: { select: { id: true, name: true, email: true } },
-            },
-          },
+          customer: { select: { id: true, name: true, email: true } },
         },
       },
     },
-    orderBy: {
-      createdAt: 'desc',
-    },
+    orderBy: { createdAt: 'desc' },
   });
-
-  return payments;
 };
 
-// 4. Get Payment Details by ID
+// 4. Get Payment Details By ID
 const getPaymentById = async (paymentId: string, userId: string, role: Role) => {
   const payment = await prisma.payment.findUnique({
     where: { id: paymentId },
@@ -171,43 +178,27 @@ const getPaymentById = async (paymentId: string, userId: string, role: Role) => 
       booking: {
         include: {
           service: true,
-          customer: {
-            select: { id: true, name: true, email: true },
-          },
+          customer: { select: { id: true, name: true, email: true } },
           technicianProfile: {
-            include: {
-              user: { select: { id: true, name: true, email: true } },
-            },
+            include: { user: { select: { id: true, name: true, email: true } } },
           },
         },
       },
     },
   });
 
-  if (!payment) {
-    throw new Error('Payment record not found!');
-  }
+  if (!payment) throw new Error('Payment record not found!');
 
-  // Access validation
   if (role === Role.CUSTOMER && payment.booking.customerId !== userId) {
-    throw new Error('Unauthorized access to this payment record!');
-  }
-
-  if (role === Role.TECHNICIAN) {
-    const techProfile = await prisma.technicianProfile.findUnique({
-      where: { userId },
-    });
-    if (!techProfile || payment.booking.technicianProfileId !== techProfile.id) {
-      throw new Error('Unauthorized access to this payment record!');
-    }
+    throw new Error('Unauthorized access!');
   }
 
   return payment;
 };
 
 export const PaymentService = {
-  createPaymentIntent,
-  confirmPayment,
+  createCheckoutSession,
+  handleStripeWebhook,
   getUserPayments,
   getPaymentById,
 };

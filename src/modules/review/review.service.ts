@@ -1,3 +1,4 @@
+import { Prisma } from "../../../generated/prisma/client";
 import { BookingStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
@@ -40,7 +41,7 @@ const createReview = async (
   }
 
   // 4. Create review and recalculate technician average rating in a transaction
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const createdReview = await tx.review.create({
       data: {
         bookingId,

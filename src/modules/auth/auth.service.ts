@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '../../lib/prisma';
 import config from '../../config';
 import { SignOptions } from 'jsonwebtoken';
+import { Prisma } from '../../../generated/prisma/client';
 
 const registerUser = async (payload: any) => {
   const { name, email, password, phone, role, hourlyRate, location, skills, bio, experienceYears } = payload;
@@ -16,7 +17,7 @@ const registerUser = async (payload: any) => {
   const hashedPassword = await bcrypt.hash(password, Number(config.bcrypt_salt_round));
   const userRole = role === 'TECHNICIAN' ? Role.TECHNICIAN : Role.CUSTOMER;
 
-  const newUser = await prisma.$transaction(async (tx) => {
+  const newUser = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const user = await tx.user.create({
       data: {
         name,

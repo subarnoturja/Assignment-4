@@ -1,32 +1,31 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
+import { PaymentController } from './payment.controller';
 import { auth } from '../../middlewares/auth';
 import { Role } from '../../../generated/prisma/enums';
-import { PaymentController } from './payment.controller';
 
 const router = Router();
 
-// Create Payment Session / Intent (Customer only)
+// Create Checkout Session
 router.post(
   '/create',
   auth(Role.CUSTOMER),
-  PaymentController.createPaymentIntent
+  PaymentController.createCheckoutSession
 );
 
-// Verify/Confirm Payment (Webhook / Manual Callback Verification)
-// Note: Webhooks usually run unauthenticated or using raw body verification
+// Stripe Webhook listener (Requires raw body for signature verification)
 router.post(
-  '/confirm',
-  PaymentController.confirmPayment
+  '/webhook',
+  express.raw({ type: 'application/json' }),
+  PaymentController.handleStripeWebhook
 );
 
-// Get User Payment History (Customer, Technician, or Admin)
+// History routes
 router.get(
   '/',
   auth(Role.CUSTOMER, Role.TECHNICIAN, Role.ADMIN),
   PaymentController.getUserPayments
 );
 
-// Get Specific Payment Details
 router.get(
   '/:id',
   auth(Role.CUSTOMER, Role.TECHNICIAN, Role.ADMIN),
