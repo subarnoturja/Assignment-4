@@ -1,10 +1,10 @@
 import { createToken } from '../../utils/jwt';
-import { Role } from '../../../generated/prisma/enums';
+import { Role } from '../../../prisma/generated/prisma/enums';
 import bcrypt from 'bcryptjs';
 import { prisma } from '../../lib/prisma';
 import config from '../../config';
 import { SignOptions } from 'jsonwebtoken';
-import { Prisma } from '../../../generated/prisma/client';
+import { Prisma } from '../../../prisma/generated/prisma/client';
 
 const registerUser = async (payload: any) => {
   const { name, email, password, phone, role, hourlyRate, location, skills, bio, experienceYears } = payload;
