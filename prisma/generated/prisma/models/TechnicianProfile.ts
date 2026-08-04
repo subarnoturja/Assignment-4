@@ -477,9 +477,9 @@ export type TechnicianProfileUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TechnicianProfileNullableScalarRelationFilter = {
-  is?: Prisma.TechnicianProfileWhereInput | null
-  isNot?: Prisma.TechnicianProfileWhereInput | null
+export type TechnicianProfileScalarRelationFilter = {
+  is?: Prisma.TechnicianProfileWhereInput
+  isNot?: Prisma.TechnicianProfileWhereInput
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -545,9 +545,60 @@ export type TechnicianProfileSumOrderByAggregateInput = {
   totalReviewsCount?: Prisma.SortOrder
 }
 
-export type TechnicianProfileScalarRelationFilter = {
-  is?: Prisma.TechnicianProfileWhereInput
-  isNot?: Prisma.TechnicianProfileWhereInput
+export type TechnicianProfileNullableScalarRelationFilter = {
+  is?: Prisma.TechnicianProfileWhereInput | null
+  isNot?: Prisma.TechnicianProfileWhereInput | null
+}
+
+export type TechnicianProfileCreateNestedOneWithoutBookingsInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutBookingsInput, Prisma.TechnicianProfileUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutBookingsInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+}
+
+export type TechnicianProfileUpdateOneRequiredWithoutBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutBookingsInput, Prisma.TechnicianProfileUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutBookingsInput
+  upsert?: Prisma.TechnicianProfileUpsertWithoutBookingsInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutBookingsInput, Prisma.TechnicianProfileUpdateWithoutBookingsInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutBookingsInput>
+}
+
+export type TechnicianProfileCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutReviewsInput, Prisma.TechnicianProfileUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+}
+
+export type TechnicianProfileUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutReviewsInput, Prisma.TechnicianProfileUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.TechnicianProfileUpsertWithoutReviewsInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutReviewsInput, Prisma.TechnicianProfileUpdateWithoutReviewsInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutReviewsInput>
+}
+
+export type TechnicianProfileCreateNestedOneWithoutServicesInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutServicesInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+}
+
+export type TechnicianProfileUpdateOneRequiredWithoutServicesNestedInput = {
+  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
+  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutServicesInput
+  upsert?: Prisma.TechnicianProfileUpsertWithoutServicesInput
+  connect?: Prisma.TechnicianProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutServicesInput, Prisma.TechnicianProfileUpdateWithoutServicesInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
+}
+
+export type TechnicianProfileCreateskillsInput = {
+  set: string[]
+}
+
+export type TechnicianProfileUpdateskillsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type TechnicianProfileCreateNestedOneWithoutUserInput = {
@@ -580,241 +631,6 @@ export type TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput = {
   delete?: Prisma.TechnicianProfileWhereInput | boolean
   connect?: Prisma.TechnicianProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutUserInput, Prisma.TechnicianProfileUpdateWithoutUserInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutUserInput>
-}
-
-export type TechnicianProfileCreateskillsInput = {
-  set: string[]
-}
-
-export type TechnicianProfileUpdateskillsInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type TechnicianProfileCreateNestedOneWithoutServicesInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutServicesInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-}
-
-export type TechnicianProfileUpdateOneRequiredWithoutServicesNestedInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutServicesInput
-  upsert?: Prisma.TechnicianProfileUpsertWithoutServicesInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutServicesInput, Prisma.TechnicianProfileUpdateWithoutServicesInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
-}
-
-export type TechnicianProfileCreateNestedOneWithoutBookingsInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutBookingsInput, Prisma.TechnicianProfileUncheckedCreateWithoutBookingsInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutBookingsInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-}
-
-export type TechnicianProfileUpdateOneRequiredWithoutBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutBookingsInput, Prisma.TechnicianProfileUncheckedCreateWithoutBookingsInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutBookingsInput
-  upsert?: Prisma.TechnicianProfileUpsertWithoutBookingsInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutBookingsInput, Prisma.TechnicianProfileUpdateWithoutBookingsInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutBookingsInput>
-}
-
-export type TechnicianProfileCreateNestedOneWithoutReviewsInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutReviewsInput, Prisma.TechnicianProfileUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutReviewsInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-}
-
-export type TechnicianProfileUpdateOneRequiredWithoutReviewsNestedInput = {
-  create?: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutReviewsInput, Prisma.TechnicianProfileUncheckedCreateWithoutReviewsInput>
-  connectOrCreate?: Prisma.TechnicianProfileCreateOrConnectWithoutReviewsInput
-  upsert?: Prisma.TechnicianProfileUpsertWithoutReviewsInput
-  connect?: Prisma.TechnicianProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TechnicianProfileUpdateToOneWithWhereWithoutReviewsInput, Prisma.TechnicianProfileUpdateWithoutReviewsInput>, Prisma.TechnicianProfileUncheckedUpdateWithoutReviewsInput>
-}
-
-export type TechnicianProfileCreateWithoutUserInput = {
-  id?: string
-  bio?: string | null
-  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
-  experienceYears?: number
-  hourlyRate: number
-  location: string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: number
-  totalReviewsCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  services?: Prisma.ServiceCreateNestedManyWithoutTechnicianProfileInput
-  bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianProfileInput
-}
-
-export type TechnicianProfileUncheckedCreateWithoutUserInput = {
-  id?: string
-  bio?: string | null
-  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
-  experienceYears?: number
-  hourlyRate: number
-  location: string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: number
-  totalReviewsCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianProfileInput
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTechnicianProfileInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutTechnicianProfileInput
-}
-
-export type TechnicianProfileCreateOrConnectWithoutUserInput = {
-  where: Prisma.TechnicianProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutUserInput, Prisma.TechnicianProfileUncheckedCreateWithoutUserInput>
-}
-
-export type TechnicianProfileUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutUserInput, Prisma.TechnicianProfileUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutUserInput, Prisma.TechnicianProfileUncheckedCreateWithoutUserInput>
-  where?: Prisma.TechnicianProfileWhereInput
-}
-
-export type TechnicianProfileUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.TechnicianProfileWhereInput
-  data: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutUserInput, Prisma.TechnicianProfileUncheckedUpdateWithoutUserInput>
-}
-
-export type TechnicianProfileUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
-  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
-  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  services?: Prisma.ServiceUpdateManyWithoutTechnicianProfileNestedInput
-  bookings?: Prisma.BookingUpdateManyWithoutTechnicianProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutTechnicianProfileNestedInput
-}
-
-export type TechnicianProfileUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
-  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
-  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianProfileNestedInput
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianProfileNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutTechnicianProfileNestedInput
-}
-
-export type TechnicianProfileCreateWithoutServicesInput = {
-  id?: string
-  bio?: string | null
-  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
-  experienceYears?: number
-  hourlyRate: number
-  location: string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: number
-  totalReviewsCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutTechnicianProfileInput
-  bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianProfileInput
-  reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianProfileInput
-}
-
-export type TechnicianProfileUncheckedCreateWithoutServicesInput = {
-  id?: string
-  userId: string
-  bio?: string | null
-  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
-  experienceYears?: number
-  hourlyRate: number
-  location: string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: number
-  totalReviewsCount?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTechnicianProfileInput
-  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutTechnicianProfileInput
-}
-
-export type TechnicianProfileCreateOrConnectWithoutServicesInput = {
-  where: Prisma.TechnicianProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
-}
-
-export type TechnicianProfileUpsertWithoutServicesInput = {
-  update: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutServicesInput, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
-  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
-  where?: Prisma.TechnicianProfileWhereInput
-}
-
-export type TechnicianProfileUpdateToOneWithWhereWithoutServicesInput = {
-  where?: Prisma.TechnicianProfileWhereInput
-  data: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutServicesInput, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
-}
-
-export type TechnicianProfileUpdateWithoutServicesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
-  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
-  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTechnicianProfileNestedInput
-  bookings?: Prisma.BookingUpdateManyWithoutTechnicianProfileNestedInput
-  reviews?: Prisma.ReviewUpdateManyWithoutTechnicianProfileNestedInput
-}
-
-export type TechnicianProfileUncheckedUpdateWithoutServicesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
-  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
-  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
-  location?: Prisma.StringFieldUpdateOperationsInput | string
-  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianProfileNestedInput
-  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutTechnicianProfileNestedInput
 }
 
 export type TechnicianProfileCreateWithoutBookingsInput = {
@@ -983,6 +799,174 @@ export type TechnicianProfileUncheckedUpdateWithoutReviewsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianProfileNestedInput
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianProfileNestedInput
+}
+
+export type TechnicianProfileCreateWithoutServicesInput = {
+  id?: string
+  bio?: string | null
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  experienceYears?: number
+  hourlyRate: number
+  location: string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: number
+  totalReviewsCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTechnicianProfileInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianProfileInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianProfileInput
+}
+
+export type TechnicianProfileUncheckedCreateWithoutServicesInput = {
+  id?: string
+  userId: string
+  bio?: string | null
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  experienceYears?: number
+  hourlyRate: number
+  location: string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: number
+  totalReviewsCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTechnicianProfileInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutTechnicianProfileInput
+}
+
+export type TechnicianProfileCreateOrConnectWithoutServicesInput = {
+  where: Prisma.TechnicianProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
+}
+
+export type TechnicianProfileUpsertWithoutServicesInput = {
+  update: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutServicesInput, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
+  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutServicesInput, Prisma.TechnicianProfileUncheckedCreateWithoutServicesInput>
+  where?: Prisma.TechnicianProfileWhereInput
+}
+
+export type TechnicianProfileUpdateToOneWithWhereWithoutServicesInput = {
+  where?: Prisma.TechnicianProfileWhereInput
+  data: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutServicesInput, Prisma.TechnicianProfileUncheckedUpdateWithoutServicesInput>
+}
+
+export type TechnicianProfileUpdateWithoutServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTechnicianProfileNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutTechnicianProfileNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutTechnicianProfileNestedInput
+}
+
+export type TechnicianProfileUncheckedUpdateWithoutServicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianProfileNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutTechnicianProfileNestedInput
+}
+
+export type TechnicianProfileCreateWithoutUserInput = {
+  id?: string
+  bio?: string | null
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  experienceYears?: number
+  hourlyRate: number
+  location: string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: number
+  totalReviewsCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  services?: Prisma.ServiceCreateNestedManyWithoutTechnicianProfileInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutTechnicianProfileInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutTechnicianProfileInput
+}
+
+export type TechnicianProfileUncheckedCreateWithoutUserInput = {
+  id?: string
+  bio?: string | null
+  skills?: Prisma.TechnicianProfileCreateskillsInput | string[]
+  experienceYears?: number
+  hourlyRate: number
+  location: string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: number
+  totalReviewsCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  services?: Prisma.ServiceUncheckedCreateNestedManyWithoutTechnicianProfileInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTechnicianProfileInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutTechnicianProfileInput
+}
+
+export type TechnicianProfileCreateOrConnectWithoutUserInput = {
+  where: Prisma.TechnicianProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutUserInput, Prisma.TechnicianProfileUncheckedCreateWithoutUserInput>
+}
+
+export type TechnicianProfileUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutUserInput, Prisma.TechnicianProfileUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TechnicianProfileCreateWithoutUserInput, Prisma.TechnicianProfileUncheckedCreateWithoutUserInput>
+  where?: Prisma.TechnicianProfileWhereInput
+}
+
+export type TechnicianProfileUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.TechnicianProfileWhereInput
+  data: Prisma.XOR<Prisma.TechnicianProfileUpdateWithoutUserInput, Prisma.TechnicianProfileUncheckedUpdateWithoutUserInput>
+}
+
+export type TechnicianProfileUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  services?: Prisma.ServiceUpdateManyWithoutTechnicianProfileNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutTechnicianProfileNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutTechnicianProfileNestedInput
+}
+
+export type TechnicianProfileUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.TechnicianProfileUpdateskillsInput | string[]
+  experienceYears?: Prisma.IntFieldUpdateOperationsInput | number
+  hourlyRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  availability?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalReviewsCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  services?: Prisma.ServiceUncheckedUpdateManyWithoutTechnicianProfileNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTechnicianProfileNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutTechnicianProfileNestedInput
 }
 
 

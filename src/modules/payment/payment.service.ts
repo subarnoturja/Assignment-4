@@ -1,9 +1,9 @@
-
 import Stripe from 'stripe';
 import { prisma } from '../../lib/prisma';
 import { BookingStatus, PaymentProvider, PaymentStatus, Role } from '../../../generated/prisma/enums';
+import config from '../../config';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+const stripe = new Stripe(config.stripe_secret_key, {
   apiVersion: '2023-10-16' as any,
 });
 
@@ -97,7 +97,7 @@ const reqUserEmail = async (userId: string) => {
 
 // 2. Stripe Webhook Event Handler
 const handleStripeWebhook = async (rawBody: Buffer, signature: string) => {
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+  const webhookSecret = config.stripe_webhook_secret;
 
   let event: Stripe.Event;
 

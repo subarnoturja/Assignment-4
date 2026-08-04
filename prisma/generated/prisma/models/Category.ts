@@ -317,6 +317,10 @@ export type CategoryScalarRelationFilter = {
   isNot?: Prisma.CategoryWhereInput
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type CategoryCreateNestedOneWithoutServicesInput = {
   create?: Prisma.XOR<Prisma.CategoryCreateWithoutServicesInput, Prisma.CategoryUncheckedCreateWithoutServicesInput>
   connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutServicesInput

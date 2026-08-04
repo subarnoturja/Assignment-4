@@ -40,8 +40,7 @@ export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
 
 
 export const PaymentProvider = {
-  STRIPE: 'STRIPE',
-  SSLCOMMERZ: 'SSLCOMMERZ'
+  STRIPE: 'STRIPE'
 } as const
 
 export type PaymentProvider = (typeof PaymentProvider)[keyof typeof PaymentProvider]

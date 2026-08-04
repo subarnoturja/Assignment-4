@@ -385,6 +385,11 @@ export type ServiceUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type ServiceScalarRelationFilter = {
+  is?: Prisma.ServiceWhereInput
+  isNot?: Prisma.ServiceWhereInput
+}
+
 export type ServiceListRelationFilter = {
   every?: Prisma.ServiceWhereInput
   some?: Prisma.ServiceWhereInput
@@ -436,51 +441,18 @@ export type ServiceSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
 }
 
-export type ServiceScalarRelationFilter = {
-  is?: Prisma.ServiceWhereInput
-  isNot?: Prisma.ServiceWhereInput
+export type ServiceCreateNestedOneWithoutBookingsInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
+  connect?: Prisma.ServiceWhereUniqueInput
 }
 
-export type ServiceCreateNestedManyWithoutTechnicianProfileInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
-  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
-  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-}
-
-export type ServiceUncheckedCreateNestedManyWithoutTechnicianProfileInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
-  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
-  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-}
-
-export type ServiceUpdateManyWithoutTechnicianProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
-  upsert?: Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput[]
-  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
-  set?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  disconnect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  delete?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  update?: Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput[]
-  updateMany?: Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput | Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput[]
-  deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
-}
-
-export type ServiceUncheckedUpdateManyWithoutTechnicianProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
-  upsert?: Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput[]
-  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
-  set?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  disconnect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  delete?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
-  update?: Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput[]
-  updateMany?: Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput | Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput[]
-  deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
+export type ServiceUpdateOneRequiredWithoutBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
+  upsert?: Prisma.ServiceUpsertWithoutBookingsInput
+  connect?: Prisma.ServiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceUpdateToOneWithWhereWithoutBookingsInput, Prisma.ServiceUpdateWithoutBookingsInput>, Prisma.ServiceUncheckedUpdateWithoutBookingsInput>
 }
 
 export type ServiceCreateNestedManyWithoutCategoryInput = {
@@ -525,128 +497,46 @@ export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
-export type ServiceCreateNestedOneWithoutBookingsInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
-  connect?: Prisma.ServiceWhereUniqueInput
+export type ServiceCreateNestedManyWithoutTechnicianProfileInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
+  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
+  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
 }
 
-export type ServiceUpdateOneRequiredWithoutBookingsNestedInput = {
-  create?: Prisma.XOR<Prisma.ServiceCreateWithoutBookingsInput, Prisma.ServiceUncheckedCreateWithoutBookingsInput>
-  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutBookingsInput
-  upsert?: Prisma.ServiceUpsertWithoutBookingsInput
-  connect?: Prisma.ServiceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ServiceUpdateToOneWithWhereWithoutBookingsInput, Prisma.ServiceUpdateWithoutBookingsInput>, Prisma.ServiceUncheckedUpdateWithoutBookingsInput>
+export type ServiceUncheckedCreateNestedManyWithoutTechnicianProfileInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
+  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
+  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
 }
 
-export type ServiceCreateWithoutTechnicianProfileInput = {
-  id?: string
-  title: string
-  description: string
-  price: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  category: Prisma.CategoryCreateNestedOneWithoutServicesInput
-  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
+export type ServiceUpdateManyWithoutTechnicianProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
+  upsert?: Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput[]
+  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
+  set?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  disconnect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  delete?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  update?: Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput[]
+  updateMany?: Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput | Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput[]
+  deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
-export type ServiceUncheckedCreateWithoutTechnicianProfileInput = {
-  id?: string
-  title: string
-  description: string
-  price: number
-  categoryId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
-}
-
-export type ServiceCreateOrConnectWithoutTechnicianProfileInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput>
-}
-
-export type ServiceCreateManyTechnicianProfileInputEnvelope = {
-  data: Prisma.ServiceCreateManyTechnicianProfileInput | Prisma.ServiceCreateManyTechnicianProfileInput[]
-  skipDuplicates?: boolean
-}
-
-export type ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  update: Prisma.XOR<Prisma.ServiceUpdateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedUpdateWithoutTechnicianProfileInput>
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput>
-}
-
-export type ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  data: Prisma.XOR<Prisma.ServiceUpdateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedUpdateWithoutTechnicianProfileInput>
-}
-
-export type ServiceUpdateManyWithWhereWithoutTechnicianProfileInput = {
-  where: Prisma.ServiceScalarWhereInput
-  data: Prisma.XOR<Prisma.ServiceUpdateManyMutationInput, Prisma.ServiceUncheckedUpdateManyWithoutTechnicianProfileInput>
-}
-
-export type ServiceScalarWhereInput = {
-  AND?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
-  OR?: Prisma.ServiceScalarWhereInput[]
-  NOT?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
-  id?: Prisma.StringFilter<"Service"> | string
-  title?: Prisma.StringFilter<"Service"> | string
-  description?: Prisma.StringFilter<"Service"> | string
-  price?: Prisma.FloatFilter<"Service"> | number
-  categoryId?: Prisma.StringFilter<"Service"> | string
-  technicianProfileId?: Prisma.StringFilter<"Service"> | string
-  createdAt?: Prisma.DateTimeFilter<"Service"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
-}
-
-export type ServiceCreateWithoutCategoryInput = {
-  id?: string
-  title: string
-  description: string
-  price: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  technicianProfile: Prisma.TechnicianProfileCreateNestedOneWithoutServicesInput
-  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
-}
-
-export type ServiceUncheckedCreateWithoutCategoryInput = {
-  id?: string
-  title: string
-  description: string
-  price: number
-  technicianProfileId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
-}
-
-export type ServiceCreateOrConnectWithoutCategoryInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutCategoryInput, Prisma.ServiceUncheckedCreateWithoutCategoryInput>
-}
-
-export type ServiceCreateManyCategoryInputEnvelope = {
-  data: Prisma.ServiceCreateManyCategoryInput | Prisma.ServiceCreateManyCategoryInput[]
-  skipDuplicates?: boolean
-}
-
-export type ServiceUpsertWithWhereUniqueWithoutCategoryInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  update: Prisma.XOR<Prisma.ServiceUpdateWithoutCategoryInput, Prisma.ServiceUncheckedUpdateWithoutCategoryInput>
-  create: Prisma.XOR<Prisma.ServiceCreateWithoutCategoryInput, Prisma.ServiceUncheckedCreateWithoutCategoryInput>
-}
-
-export type ServiceUpdateWithWhereUniqueWithoutCategoryInput = {
-  where: Prisma.ServiceWhereUniqueInput
-  data: Prisma.XOR<Prisma.ServiceUpdateWithoutCategoryInput, Prisma.ServiceUncheckedUpdateWithoutCategoryInput>
-}
-
-export type ServiceUpdateManyWithWhereWithoutCategoryInput = {
-  where: Prisma.ServiceScalarWhereInput
-  data: Prisma.XOR<Prisma.ServiceUpdateManyMutationInput, Prisma.ServiceUncheckedUpdateManyWithoutCategoryInput>
+export type ServiceUncheckedUpdateManyWithoutTechnicianProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput> | Prisma.ServiceCreateWithoutTechnicianProfileInput[] | Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput[]
+  connectOrCreate?: Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput | Prisma.ServiceCreateOrConnectWithoutTechnicianProfileInput[]
+  upsert?: Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput[]
+  createMany?: Prisma.ServiceCreateManyTechnicianProfileInputEnvelope
+  set?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  disconnect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  delete?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  connect?: Prisma.ServiceWhereUniqueInput | Prisma.ServiceWhereUniqueInput[]
+  update?: Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput | Prisma.ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput[]
+  updateMany?: Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput | Prisma.ServiceUpdateManyWithWhereWithoutTechnicianProfileInput[]
+  deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
 export type ServiceCreateWithoutBookingsInput = {
@@ -709,7 +599,80 @@ export type ServiceUncheckedUpdateWithoutBookingsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ServiceCreateManyTechnicianProfileInput = {
+export type ServiceCreateWithoutCategoryInput = {
+  id?: string
+  title: string
+  description: string
+  price: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  technicianProfile: Prisma.TechnicianProfileCreateNestedOneWithoutServicesInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
+}
+
+export type ServiceUncheckedCreateWithoutCategoryInput = {
+  id?: string
+  title: string
+  description: string
+  price: number
+  technicianProfileId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
+}
+
+export type ServiceCreateOrConnectWithoutCategoryInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutCategoryInput, Prisma.ServiceUncheckedCreateWithoutCategoryInput>
+}
+
+export type ServiceCreateManyCategoryInputEnvelope = {
+  data: Prisma.ServiceCreateManyCategoryInput | Prisma.ServiceCreateManyCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type ServiceUpsertWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  update: Prisma.XOR<Prisma.ServiceUpdateWithoutCategoryInput, Prisma.ServiceUncheckedUpdateWithoutCategoryInput>
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutCategoryInput, Prisma.ServiceUncheckedCreateWithoutCategoryInput>
+}
+
+export type ServiceUpdateWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  data: Prisma.XOR<Prisma.ServiceUpdateWithoutCategoryInput, Prisma.ServiceUncheckedUpdateWithoutCategoryInput>
+}
+
+export type ServiceUpdateManyWithWhereWithoutCategoryInput = {
+  where: Prisma.ServiceScalarWhereInput
+  data: Prisma.XOR<Prisma.ServiceUpdateManyMutationInput, Prisma.ServiceUncheckedUpdateManyWithoutCategoryInput>
+}
+
+export type ServiceScalarWhereInput = {
+  AND?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
+  OR?: Prisma.ServiceScalarWhereInput[]
+  NOT?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
+  id?: Prisma.StringFilter<"Service"> | string
+  title?: Prisma.StringFilter<"Service"> | string
+  description?: Prisma.StringFilter<"Service"> | string
+  price?: Prisma.FloatFilter<"Service"> | number
+  categoryId?: Prisma.StringFilter<"Service"> | string
+  technicianProfileId?: Prisma.StringFilter<"Service"> | string
+  createdAt?: Prisma.DateTimeFilter<"Service"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Service"> | Date | string
+}
+
+export type ServiceCreateWithoutTechnicianProfileInput = {
+  id?: string
+  title: string
+  description: string
+  price: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutServicesInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutServiceInput
+}
+
+export type ServiceUncheckedCreateWithoutTechnicianProfileInput = {
   id?: string
   title: string
   description: string
@@ -717,38 +680,33 @@ export type ServiceCreateManyTechnicianProfileInput = {
   categoryId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutServiceInput
 }
 
-export type ServiceUpdateWithoutTechnicianProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  category?: Prisma.CategoryUpdateOneRequiredWithoutServicesNestedInput
-  bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
+export type ServiceCreateOrConnectWithoutTechnicianProfileInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput>
 }
 
-export type ServiceUncheckedUpdateWithoutTechnicianProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
-  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
+export type ServiceCreateManyTechnicianProfileInputEnvelope = {
+  data: Prisma.ServiceCreateManyTechnicianProfileInput | Prisma.ServiceCreateManyTechnicianProfileInput[]
+  skipDuplicates?: boolean
 }
 
-export type ServiceUncheckedUpdateManyWithoutTechnicianProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
-  price?: Prisma.FloatFieldUpdateOperationsInput | number
-  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type ServiceUpsertWithWhereUniqueWithoutTechnicianProfileInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  update: Prisma.XOR<Prisma.ServiceUpdateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedUpdateWithoutTechnicianProfileInput>
+  create: Prisma.XOR<Prisma.ServiceCreateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedCreateWithoutTechnicianProfileInput>
+}
+
+export type ServiceUpdateWithWhereUniqueWithoutTechnicianProfileInput = {
+  where: Prisma.ServiceWhereUniqueInput
+  data: Prisma.XOR<Prisma.ServiceUpdateWithoutTechnicianProfileInput, Prisma.ServiceUncheckedUpdateWithoutTechnicianProfileInput>
+}
+
+export type ServiceUpdateManyWithWhereWithoutTechnicianProfileInput = {
+  where: Prisma.ServiceScalarWhereInput
+  data: Prisma.XOR<Prisma.ServiceUpdateManyMutationInput, Prisma.ServiceUncheckedUpdateManyWithoutTechnicianProfileInput>
 }
 
 export type ServiceCreateManyCategoryInput = {
@@ -789,6 +747,48 @@ export type ServiceUncheckedUpdateManyWithoutCategoryInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   technicianProfileId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ServiceCreateManyTechnicianProfileInput = {
+  id?: string
+  title: string
+  description: string
+  price: number
+  categoryId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ServiceUpdateWithoutTechnicianProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutServicesNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutServiceNestedInput
+}
+
+export type ServiceUncheckedUpdateWithoutTechnicianProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutServiceNestedInput
+}
+
+export type ServiceUncheckedUpdateManyWithoutTechnicianProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
