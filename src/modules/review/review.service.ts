@@ -1,5 +1,5 @@
-import { Prisma } from "../../../generated/prisma/client";
-import { BookingStatus } from "../../../generated/prisma/enums";
+import { Prisma } from "../../../prisma/generated/prisma/client";
+import { BookingStatus } from "../../../prisma/generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 const createReview = async (

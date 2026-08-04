@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { prisma } from '../../lib/prisma';
-import { BookingStatus, PaymentProvider, PaymentStatus, Role } from '../../../generated/prisma/enums';
+import { BookingStatus, PaymentProvider, PaymentStatus, Role } from '../../../prisma/generated/prisma/enums';
 import config from '../../config';
 
 const stripe = new Stripe(config.stripe_secret_key, {

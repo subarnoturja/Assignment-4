@@ -1,4 +1,4 @@
-import { BookingStatus, Role } from "../../../generated/prisma/enums";
+import { BookingStatus, Role } from "../../../prisma/generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 
